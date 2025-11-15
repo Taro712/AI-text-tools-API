@@ -66,12 +66,12 @@ start.sh
 
 **Example Request**
 
-'''json
+**json**
 {
   "text": "FastAPI is a modern, fast web framework for building APIs with Python."
 }
 Example Response
-'''json
+**json**
 
 {
   "summary": "FastAPI is a fast web framework for building APIs with Python.",
@@ -95,10 +95,8 @@ Install dependencies
 
 ## bash
 pip install -r requirements.txt
-Run the app locally
-
-## bash
 uvicorn app.main:app --reload
+
 ## Use Cases
 Automating article or report summaries
 Keyword extraction for blogs, SEO, or marketing
