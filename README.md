@@ -66,13 +66,12 @@ start.sh
 
 **Example Request**
 
-##json
+'''json
 {
   "text": "FastAPI is a modern, fast web framework for building APIs with Python."
 }
 Example Response
-
-##json
+'''json
 
 {
   "summary": "FastAPI is a fast web framework for building APIs with Python.",
@@ -83,24 +82,24 @@ Example Response
 }
 
 
-##Installation
+## Installation
 git clone https://github.com/yourusername/ai-text-tools-api.git
 cd ai-text-tools-api
 Create a virtual environment
 
-##bash
+## bash
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 Install dependencies
 
-##bash
+## bash
 pip install -r requirements.txt
 Run the app locally
 
-##bash
+## bash
 uvicorn app.main:app --reload
-**Use Cases**
+## Use Cases
 Automating article or report summaries
 Keyword extraction for blogs, SEO, or marketing
 Sentiment analysis for reviews, social media, or feedback
