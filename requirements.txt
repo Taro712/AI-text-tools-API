@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+transformers
+langdetect
+beautifulsoup4
+nltk
+pydantic
+python-multipart
+scikit-learn
