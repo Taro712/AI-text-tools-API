@@ -54,10 +54,6 @@ README.md
 Procfile
 runtime.txt
 start.sh
-
-pgsql
-Copy code
-
 ## API Endpoints
 
 | Endpoint | Method | Description |
@@ -76,8 +72,8 @@ Copy code
 }
 Example Response
 
-json
-Copy code
+**json**
+
 {
   "summary": "FastAPI is a fast web framework for building APIs with Python.",
   "keywords": ["FastAPI", "web framework", "APIs", "Python"],
@@ -85,41 +81,24 @@ Copy code
   "language": "en",
   "cleaned_text": "FastAPI modern fast web framework building APIs Python"
 }
-Installation
-Clone the repository
-
-bash
-Copy code
+**Installation**
 git clone https://github.com/yourusername/ai-text-tools-api.git
 cd ai-text-tools-api
 Create a virtual environment
 
-bash
-Copy code
+**bash**
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 Install dependencies
 
-bash
-Copy code
+**bash**
 pip install -r requirements.txt
 Run the app locally
 
-bash
-Copy code
+**bash**
 uvicorn app.main:app --reload
-Open in browser
-
-arduino
-Copy code
-http://127.0.0.1:8000/docs
-Deployment
-Render, Railway, and Vercel support this project on free-tier plans.
-Use the provided Procfile or start.sh for startup.
-Models run entirely on CPU and have a low memory footprint.
-
-Use Cases
+**Use Cases**
 Automating article or report summaries
 Keyword extraction for blogs, SEO, or marketing
 Sentiment analysis for reviews, social media, or feedback
