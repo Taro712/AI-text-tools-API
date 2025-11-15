@@ -32,28 +32,19 @@ Python 3.10 or higher
 
 ## Folder Structure
 
-ai-text-tools-api/
-app/
-main.py
-config.py
-router/
-summarize.py
-keywords.py
-sentiment.py
-language.py
-clean.py
-core/
-model_loader.py
-utils.py
-schemas/
-text_request.py
-text_response.py
-requirements.txt
-.gitignore
-README.md
-Procfile
-runtime.txt
-start.sh
+D:/project/
+├───.gitignore
+├───README.md
+├───requirements.txt
+├───uv.lock
+├───.git/...
+├───.venv/...
+└───MAIN/
+    ├───config.py
+    ├───main.py
+    ├───core/
+    ├───endpoints/
+    └───schemas/
 ## API Endpoints
 
 | Endpoint | Method | Description |
@@ -95,7 +86,7 @@ Install dependencies
 
 ## bash
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+uvicorn MAIN.main:app --reload
 
 ## Use Cases
 Automating article or report summaries
