@@ -1,33 +1,42 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 import regex as re
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import torch
+from MAIN.schemas.text_request import SentimentRequest
+from MAIN.schemas.text_response import SentimentResponse
 
-app = FastAPI()
+router = APIRouter()
 
 MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
+LABELS = ("NEGATIVE", "POSITIVE")
 
-def preproduction_text(text:str)-> str:
-    text = re.sub(r"[^a-zA-Z0-9\s]","",text)
-    text = re.sub(r"\s+"," ",text)
-    return text
 
-def extract_keywords(text:str)-> list[str]:
+def preprocess_text(text: str) -> str:
+    text = re.sub(r"[^a-zA-Z0-9\s]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def predict_sentiment(text: str) -> SentimentResponse:
     model = AutoModelForSequenceClassification.from_pretrained(MODEL)
     tokenizer = AutoTokenizer.from_pretrained(MODEL)
-    
-    preprocess_text = preproduction_text(text)
-    text = tokenizer(preprocess_text,return_tensors="pt")
+
+    cleaned_text = preprocess_text(text)
+    tokenized = tokenizer(cleaned_text, return_tensors="pt")
 
     with torch.no_grad():
-      output = model(**text)
-      Logits = output.logits
-      predictions = torch.argmax(Logits,dim=-1)
-      return predictions.item()
+        output = model(**tokenized)
+        logits = output.logits
+        probabilities = torch.softmax(logits, dim=-1)
+        confidence, prediction_idx = torch.max(probabilities, dim=-1)
+        sentiment = LABELS[prediction_idx.item()]
+        return SentimentResponse(
+            sentiment=sentiment,
+            confidence=confidence.item(),
+        )
 
-@app.post("/sentiment")
-def analyze_sentiment(text:str) -> str:
-    text = input("enter the text to analyze:")
-    sentiment = extract_keywords(text)
-    return sentiment
+
+@router.post("/sentiment", response_model=SentimentResponse)
+def analyze_sentiment(payload: SentimentRequest) -> SentimentResponse:
+    return predict_sentiment(payload.text)
 
